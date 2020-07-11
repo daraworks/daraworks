@@ -22,7 +22,7 @@
                             v-if="menu.contents"
                             v-html="menu.contents"
                             cols="12"
-                            sm="10"
+                            md="10"
                         ></v-col>
                     </v-row>
                 </v-container>

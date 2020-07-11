@@ -7,6 +7,7 @@ const siteName = process.env.NUXT_ENV_SITE_NAME
 const siteUrl = process.env.NUXT_ENV_SITE_URL
 const siteDesc = process.env.NUXT_ENV_SITE_DESC
 const siteKeywords = process.env.NUXT_ENV_SITE_KEYWORDS
+const analyticsId = process.env.NUXT_ENV_ANALYTICS_ID
 
 export default {
     env: {
@@ -111,6 +112,8 @@ export default {
         '@nuxtjs/axios',
         '@nuxtjs/pwa',
         '@nuxtjs/dotenv',
+        '@nuxtjs/sitemap',
+        '@nuxtjs/google-analytics'
     ],
     /*
     ** Axios module configuration
@@ -146,6 +149,7 @@ export default {
     build: {
     },
     generate: {
+        subFolders: false,
         routes: async function () {
             var layout = await axios.get(`https://${serviceId}.microcms.io/api/v1/layout/layout`, {
                 headers: { 'X-API-KEY': apiKey }
@@ -238,5 +242,13 @@ export default {
             
             return routes
         }
+    },
+    sitemap: {
+        path: '/sitemap.xml',
+        hostname: siteUrl,
+        gzip: true
+    },
+    googleAnalytics: {
+        id: analyticsId
     }
 }

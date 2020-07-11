@@ -34,6 +34,10 @@
   content: "\F0142";
 }
 
+.mdi-chevron-up::before {
+  content: "\F0143";
+}
+
 .mdi-circle::before {
   content: "\F0765";
 }

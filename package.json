@@ -14,7 +14,9 @@
     "@mdi/font-build": "^1.8.5",
     "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/google-analytics": "^2.3.0",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "@nuxtjs/sitemap": "^2.4.0",
     "dayjs": "^1.8.29",
     "nuxt": "^2.13.0"
   },

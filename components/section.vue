@@ -23,7 +23,6 @@
                         v-if="section.contents"
                         v-html="section.contents"
                         cols="12"
-                        sm="10"
                     ></v-col>
                     <template v-if="section.item">
                         <template v-if="section.slide">
@@ -65,7 +64,7 @@
                                     v-if="!item.expand"
                                     cols="12"
                                     :sm="(section.col)? 6 : 6"
-                                    :md="(section.col || section.max)? 4 : 6"
+                                    :md="(section.col || section.max)? 4 : 5"
                                     :class="(item.card)? 'align-self-stretch px-4 px-sm-3' : 'align-self-stretch px-4 px-sm-0 py-0'"
                                 >
                                     <template v-if="item.card">
@@ -150,7 +149,7 @@
                                 <v-col
                                     v-else
                                     cols="12"
-                                    sm="10"
+                                    md="10"
                                     :class="(item.card)? 'align-self-stretch px-4 px-sm-3' : 'align-self-stretch px-4 px-sm-0 py-0'"
                                 >
                                     <template v-if="item.card">
@@ -198,7 +197,7 @@
                                             >
                                                 <v-card
                                                     color="transparent"
-                                                    class="ma-auto pa-3"
+                                                    class="ma-auto pa-5 pa-sm-7"
                                                     width="100%"
                                                     flat
                                                     tile
@@ -230,16 +229,18 @@
                         </template>
                     </template>
                     <v-col v-if="section.movie" cols="12" sm="8" md="6">
-                        <div style="width: 100%;padding-bottom: 56.25%;height: 0px;position: relative;">
+                        <div :style="(external.title == 'youtube')? 'width: 100%;padding-bottom: 56.25%;height: 0px;position: relative;' : `height:${external.height};`">
                             <iframe
-                                style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);"
-                                width="100%"
-                                height="100%"
-                                title="Movie"
-                                :src="`https://www.youtube.com/embed/${section.movie}`"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen
+                                :style="external.style"
+                                :width="external.width"
+                                :height="external.height"
+                                :title="external.title"
+                                :src="external.src"
+                                :frameborder="external.frameborder"
+                                :scrolling="(external.scrolling)? external.scrolling : undefined"
+                                :allow="external.allow"
+                                :allowfullscreen="(external.allowfullscreen)? external.allowfullscreen : undefined"
+                                :allowTransparency="(external.allowTransparency)? external.allowTransparency : undefined"
                             ></iframe>
                         </div>
                     </v-col>
@@ -375,7 +376,28 @@ export default {
             email: '',
             content: '' ,
             botField: '',
-            bread: process.env.bread
+            bread: process.env.bread,
+            iframe: {
+                youtube: {
+                    style: 'position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);',
+                    width: '100%',
+                    height: '100%',
+                    title: 'youtube',
+                    frameborder: 0,
+                    allow: 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
+                    allowfullscreen: true
+                },
+                facebook: {
+                    style: 'position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);',
+                    width: (this.$vuetify.breakpoint.xs)? '296px' : '500px',
+                    height: '600px',
+                    title: 'facebook',
+                    frameborder: 0,
+                    scrolling: 'no',
+                    allow: 'encrypted-media',
+                    allowTransparency: true
+                }
+            }
         }
     },
     methods: {
@@ -422,6 +444,30 @@ export default {
         },
         items () {
             return process.env.contactComboItems.split(',')
+        },
+        external () {
+            if (this.section.movie) {
+                var iframe = {}
+                if (this.section.movie.includes('youtu')) {
+                    iframe = this.iframe.youtube
+                    var src = this.section.movie
+                    if (this.section.movie.includes('youtube')) {
+                        src = src.slice(32)
+                    }
+                    else {
+                        src = src.slice(17)
+                    }
+                    iframe.src = `https://www.youtube.com/embed/${src}`
+                }
+                else if (this.section.movie.includes('facebook')) {
+                    iframe = this.iframe.facebook
+                    var src = this.section.movie.slice(25)
+                    var width = (this.$vuetify.breakpoint.xs)? 296 : 500
+                    var height = 600
+                    iframe.src = `https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F${src}&tabs=timeline&width=${width}&height=${height}&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId`
+                }
+                return iframe
+            }
         }
     },
     props: ['section']

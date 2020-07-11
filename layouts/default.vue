@@ -90,6 +90,19 @@
         
         <nuxt v-scroll="onScroll" />
         
+        <v-btn
+            fab
+            fixed
+            bottom
+            right
+            @click="$vuetify.goTo(0)"
+            v-show="scroll"
+        >
+            <v-icon>
+                mdi-chevron-up
+            </v-icon>
+        </v-btn>
+        
         <v-footer padless :color="layout.footer.bgColor">
             <v-sheet tile width="100%" color="transparent">
                 <v-row no-gutters class="py-4 justify-center">

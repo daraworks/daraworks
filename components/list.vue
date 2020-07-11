@@ -78,6 +78,7 @@
                         <v-col
                             v-else
                             cols="12"
+                            md="10"
                         >
                             <v-list class="py-0" :color="color.list.bg">
                                 <v-divider></v-divider>
@@ -151,10 +152,10 @@ export default {
     computed: {
         bgImg () {
             if (this.list.bgImg) {
-                var bgImg = this.section.bgImg.url
+                var bgImg = this.list.bgImg.url
                 if (this.$vuetify.breakpoint.xs) {
-                    if (this.section.bgImgS) {
-                        bgImg = this.section.bgImgS.url
+                    if (this.list.bgImgS) {
+                        bgImg = this.list.bgImgS.url
                     }
                     return `${bgImg}?auto=compress&fit=clip&w=600`
                 }
