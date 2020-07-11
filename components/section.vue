@@ -388,7 +388,7 @@ export default {
                     allowfullscreen: true
                 },
                 facebook: {
-                    style: 'position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);',
+                    style: 'border:none;overflow:hidden;',
                     width: (this.$vuetify.breakpoint.xs)? '296px' : '500px',
                     height: '600px',
                     title: 'facebook',
