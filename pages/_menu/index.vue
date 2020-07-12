@@ -47,7 +47,7 @@ export default {
             var header = menus.filter(x => x.header)
             var footer = menus.filter(x => x.footer)
             var menu = menus.filter(x =>x.id == params.menu)
-            var sections = await app.$axios.$get(`https://${serviceId}.microcms.io/api/v1/section?filters=menu[equals]${params.menu}`, {
+            var sections = await app.$axios.$get(`https://${serviceId}.microcms.io/api/v1/section?filters=menu[equals]${params.menu}&limit=1000`, {
                 headers: { 'X-API-KEY': apiKey }
             })
             layout = {
