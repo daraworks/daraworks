@@ -269,7 +269,7 @@
                             method="POST"
                             data-netlify="true"
                             netlify-honeypot="bot-field"
-                            action="/"
+                            action="/complete"
                         >
                             <input type="hidden" name="form-name" value="contact">
                             <div v-if="selections != ''" class="d-flex">
