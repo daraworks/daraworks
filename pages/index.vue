@@ -1,5 +1,5 @@
 <template>
-    <v-main>
+    <v-main :style="style">
         <template v-for="(homeSection, i) in homeSections">
             <template v-if="homeSection.fieldId=='menu'">
                 <Menu :menu="homeSection.menu" />
@@ -96,6 +96,7 @@ export default {
     },
     data() {
         return {
+            style: `background-color:${process.env.colorSiteBg};`
         }
     },
     mounted () {

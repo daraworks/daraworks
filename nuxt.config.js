@@ -16,6 +16,7 @@ export default {
         siteName: siteName,
         topTitle: process.env.NUXT_ENV_TOP_TITLE,
         topTemplate: process.env.NUXT_ENV_TOP_TEMPLATE,
+        colorSiteBg: process.env.NUXT_ENV_COLOR_SITE_BG,
         colorSectionBg: process.env.NUXT_ENV_COLOR_SECTION_BG,
         colorItemBg: process.env.NUXT_ENV_COLOR_ITEM_BG,
         colorBtnBg: process.env.NUXT_ENV_COLOR_BTN_BG,

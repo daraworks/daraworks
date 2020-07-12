@@ -69,10 +69,10 @@ export default {
     computed: {
         style () {
             if (this.$vuetify.breakpoint.mdAndUp) {
-                return 'margin-top:64px;'
+                return `margin-top:64px;background-color:${process.env.colorSiteBg};`
             }
             else {
-                return 'margin-top:56px;'
+                return `margin-top:56px;background-color:${process.env.colorSiteBg};`
             }
         }
         
