@@ -8,6 +8,7 @@ const siteUrl = process.env.NUXT_ENV_SITE_URL
 const siteDesc = process.env.NUXT_ENV_SITE_DESC
 const siteKeywords = process.env.NUXT_ENV_SITE_KEYWORDS
 const analyticsId = process.env.NUXT_ENV_ANALYTICS_ID
+const fbAppId = process.env.NUXT_ENV_FACEBOOK_APP_ID
 
 export default {
     env: {
@@ -28,7 +29,7 @@ export default {
         colorListTitle: process.env.NUXT_ENV_COLOR_LIST_TITLE,
         colorListDate: process.env.NUXT_ENV_COLOR_LIST_DATE,
         colorListOverview: process.env.NUXT_ENV_COLOR_LIST_OVERVIEW,
-        colorBread:  process.env.NUXT_ENV_COLOR_BREAD,
+        colorBread: process.env.NUXT_ENV_COLOR_BREAD,
         contactSelections: process.env.NUXT_ENV_CONTACT_SELECTIONS,
         contactComboLabel: process.env.NUXT_ENV_CONTACT_COMBO_LABEL,
         contactComboItems: process.env.NUXT_ENV_CONTACT_COMBO_ITEMS,
@@ -76,6 +77,7 @@ export default {
             { hid: 'og:description', property: 'og:description', content: siteDesc },
             { hid: 'og:image', property: 'og:image', content: `${siteUrl}ogp/home.jpg` },
             { name: 'twitter:card', content: 'summary_large_image' },
+            { property: "fb:app_id", content: fbAppId },
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
