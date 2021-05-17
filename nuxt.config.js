@@ -1,6 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
 require('dotenv').config();
-const { API_KEY, API_URL, SITE_URL, SITE_NAME, SITE_DESC, FB_APP_ID } = process.env;
+const { API_KEY, API_URL, SITE_URL, SITE_NAME, SITE_DESC, FB_APP_ID, GTM_ID } = process.env;
 
 export default {
   privateRuntimeConfig: {
@@ -64,7 +64,13 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/gtm',
   ],
+  
+  gtm: {
+    id: GTM_ID,
+    pageTracking: true
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

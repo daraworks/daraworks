@@ -72,7 +72,7 @@ export default {
   },
   head () {
     return {
-      titleTemplate: this.$config.SITE_NAME
+      titleTemplate: 'DARA-Works@shitara'
     }
   }
 }
